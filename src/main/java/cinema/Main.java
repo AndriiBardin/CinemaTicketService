@@ -9,7 +9,7 @@ public class Main {
 
     public static void main(String[] args) {
         Movie movie = new Movie();
-        movie.setTitle("Fast and Furious");
+        movie.setTitle("Fast and Furious2");
         MovieService movieService = (MovieService) injector.getInstance(MovieService.class);
         movieService.add(movie);
 
