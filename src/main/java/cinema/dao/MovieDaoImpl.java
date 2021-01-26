@@ -27,8 +27,7 @@ public class MovieDaoImpl implements MovieDao {
                 transaction.rollback();
             }
             throw new RuntimeException("Can't add movie entity ", e);
-        }
-        finally {
+        } finally {
             if (session != null) {
                 session.close();
             }
