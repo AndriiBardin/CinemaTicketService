@@ -1,5 +1,6 @@
 package cinema.dao;
 
+import cinema.exception.DataBaseException;
 import cinema.lib.Dao;
 import cinema.model.movie.Movie;
 import cinema.util.HibernateUtil;
@@ -11,7 +12,7 @@ import org.hibernate.query.Query;
 @Dao
 public class MovieDaoImpl implements MovieDao {
     @Override
-    public Movie add(Movie movie) {
+    public Movie add(Movie movie) throws DataBaseException {
         Transaction transaction = null;
         Session session = null;
         try {
@@ -22,11 +23,11 @@ public class MovieDaoImpl implements MovieDao {
             transaction.commit();
             movie.setId(itemId);
             return movie;
-        } catch (Exception e) {
+        } catch (DataBaseException e) {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can't add movie entity ", e);
+            throw new DataBaseException("Can't add movie entity");
         } finally {
             if (session != null) {
                 session.close();
@@ -39,8 +40,8 @@ public class MovieDaoImpl implements MovieDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Movie> getAllFilms = session.createQuery("from Movie", Movie.class);
             return getAllFilms.getResultList();
-        } catch (Exception e) {
-            throw new RuntimeException("Can't get all movies", e);
+        } catch (DataBaseException e) {
+            throw new DataBaseException("Can't get all movies");
         }
     }
 }
