@@ -21,7 +21,7 @@ public class MovieDaoImpl implements MovieDao {
             session.save(movie);
             transaction.commit();
             return movie;
-        } catch (DataBaseException e) {
+        } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
@@ -38,7 +38,7 @@ public class MovieDaoImpl implements MovieDao {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<Movie> getAllFilms = session.createQuery("from Movie", Movie.class);
             return getAllFilms.getResultList();
-        } catch (DataBaseException e) {
+        } catch (Exception e) {
             throw new DataBaseException("Can't get all movies", e);
         }
     }
