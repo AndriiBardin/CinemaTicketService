@@ -12,7 +12,7 @@ import org.hibernate.query.Query;
 @Dao
 public class MovieDaoImpl implements MovieDao {
     @Override
-    public Movie add(Movie movie) throws DataBaseException {
+    public Movie add(Movie movie) {
         Transaction transaction = null;
         Session session = null;
         try {
@@ -25,7 +25,7 @@ public class MovieDaoImpl implements MovieDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataBaseException("Can't add movie entity");
+            throw new DataBaseException("Can't add movie entity " + movie, e);
         } finally {
             if (session != null) {
                 session.close();
@@ -39,7 +39,7 @@ public class MovieDaoImpl implements MovieDao {
             Query<Movie> getAllFilms = session.createQuery("from Movie", Movie.class);
             return getAllFilms.getResultList();
         } catch (DataBaseException e) {
-            throw new DataBaseException("Can't get all movies");
+            throw new DataBaseException("Can't get all movies", e);
         }
     }
 }
