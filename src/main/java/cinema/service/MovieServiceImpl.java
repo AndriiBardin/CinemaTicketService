@@ -3,7 +3,7 @@ package cinema.service;
 import cinema.dao.MovieDao;
 import cinema.lib.Inject;
 import cinema.lib.Service;
-import cinema.model.movie.Movie;
+import cinema.model.Movie;
 import java.util.List;
 
 @Service
