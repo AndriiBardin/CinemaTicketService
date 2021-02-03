@@ -4,7 +4,6 @@ import cinema.exception.AuthenticationException;
 import cinema.lib.Inject;
 import cinema.model.User;
 import cinema.util.HashUtil;
-
 import java.util.Optional;
 
 public class AuthenticationServiceImpl implements AuthenticationService {
