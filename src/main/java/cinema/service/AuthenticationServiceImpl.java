@@ -3,6 +3,8 @@ package cinema.service;
 import cinema.exception.AuthenticationException;
 import cinema.lib.Inject;
 import cinema.model.User;
+import cinema.util.HashUtil;
+
 import java.util.Optional;
 
 public class AuthenticationServiceImpl implements AuthenticationService {
@@ -12,7 +14,8 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     @Override
     public User login(String email, String password) throws AuthenticationException {
         Optional<User> user = userService.findByEmail(email);
-        if (user.isPresent() && user.get().getPassword().equals(password)) {
+        if (user.isPresent() && user.get().getPassword()
+                .equals(HashUtil.hashPassword(password, user.get().getSalt()))) {
             return user.get();
         }
         throw new AuthenticationException("Incorrect login or password");
