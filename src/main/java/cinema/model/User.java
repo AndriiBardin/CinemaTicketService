@@ -1,6 +1,5 @@
 package cinema.model;
 
-import com.sun.istack.NotNull;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,8 +11,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @NotNull
-    @Column(unique = true, length = 20)
+    @Column(unique = true, nullable = false, length = 20)
     private String email;
     private String password;
     private byte[] salt;
@@ -52,9 +50,6 @@ public class User {
 
     @Override
     public String toString() {
-        return "User "
-                + "id=" + id
-                + ", login='" + email
-                + ", password='" + password + '}';
+        return "User " + ", login='" + email;
     }
 }

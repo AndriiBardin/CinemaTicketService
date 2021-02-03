@@ -1,21 +1,21 @@
 package cinema;
 
+import cinema.exception.AuthenticationException;
 import cinema.lib.Injector;
 import cinema.model.CinemaHall;
 import cinema.model.Movie;
 import cinema.model.MovieSession;
-import cinema.model.User;
+import cinema.service.AuthenticationService;
 import cinema.service.CinemaHallService;
 import cinema.service.MovieService;
 import cinema.service.MovieSessionService;
-import cinema.service.UserService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class Main {
     private static Injector injector = Injector.getInstance("cinema");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AuthenticationException {
         Movie movie1 = new Movie();
         movie1.setTitle("Fast and Furious");
         movie1.setDescription("Vin Diesel teaches everyone how to live by "
@@ -39,7 +39,7 @@ public class Main {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movie2);
         movieSession.setCinemaHall(cinemaHall);
-        movieSession.setDate(LocalDateTime.of(2020,2,1, 20,00));
+        movieSession.setDate(LocalDateTime.of(2020,2,1, 20,0));
         MovieSessionService movieSessionService = (MovieSessionService)
                 injector.getInstance(MovieSessionService.class);
         movieSessionService.add(movieSession);
@@ -47,17 +47,21 @@ public class Main {
         System.out.println(movieSessionService
                 .findAvailableSessions(movie2.getId(), LocalDate.now()));
 
-        User user1 = new User();
-        user1.setEmail("test@test.com");
-        user1.setPassword("testPass");
+        AuthenticationService authenticationService = (AuthenticationService)
+                injector.getInstance(AuthenticationService.class);
 
-        User user2 = new User();
-        user2.setEmail("test1@test.com");
-        user2.setPassword("testPass2");
+        String email = "test@test.com";
+        String pass = "testPass";
+        authenticationService.register(email, pass);
+        authenticationService.login(email, pass);
 
-        UserService userService = (UserService)
-                injector.getInstance(UserService.class);
-        userService.add(user1);
-        userService.add(user2);
+        System.out.println(authenticationService.login(email, pass));
+
+        String email1 = "test1@test.com";
+        String pass1 = "testPass1";
+
+        authenticationService.register(email1, pass1);
+        authenticationService.login(email1, pass1);
+        System.out.println(authenticationService.login(email1, pass1));
     }
 }
