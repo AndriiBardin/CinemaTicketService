@@ -2,10 +2,7 @@ package cinema;
 
 import cinema.exception.AuthenticationException;
 import cinema.lib.Injector;
-import cinema.model.CinemaHall;
-import cinema.model.Movie;
-import cinema.model.MovieSession;
-import cinema.model.User;
+import cinema.model.*;
 import cinema.service.AuthenticationService;
 import cinema.service.CinemaHallService;
 import cinema.service.MovieService;
@@ -70,5 +67,11 @@ public class Main {
 
         shoppingCartService.addSession(movieSession,user1);
         shoppingCartService.addSession(movieSession, user2);
+
+        ShoppingCart cartByUser = shoppingCartService.getByUser(user1);
+        System.out.println(cartByUser);
+
+        shoppingCartService.clear(cartByUser);
+        System.out.println(shoppingCartService.getByUser(user1));
     }
 }
