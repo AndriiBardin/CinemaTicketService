@@ -1,10 +1,9 @@
-package cinema.service.impl;
+package cinema.service;
 
 import cinema.dao.CinemaHallDao;
 import cinema.lib.Inject;
 import cinema.lib.Service;
 import cinema.model.CinemaHall;
-import cinema.service.CinemaHallService;
 import java.util.List;
 
 @Service

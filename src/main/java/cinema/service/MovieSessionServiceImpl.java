@@ -1,10 +1,9 @@
-package cinema.service.impl;
+package cinema.service;
 
 import cinema.dao.MovieSessionDao;
 import cinema.lib.Inject;
 import cinema.lib.Service;
 import cinema.model.MovieSession;
-import cinema.service.MovieSessionService;
 import java.time.LocalDate;
 import java.util.List;
 

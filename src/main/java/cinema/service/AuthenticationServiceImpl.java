@@ -1,12 +1,9 @@
-package cinema.service.impl;
+package cinema.service;
 
 import cinema.exception.AuthenticationException;
 import cinema.lib.Inject;
 import cinema.lib.Service;
 import cinema.model.User;
-import cinema.service.AuthenticationService;
-import cinema.service.ShoppingCartService;
-import cinema.service.UserService;
 import cinema.util.HashUtil;
 import java.util.Optional;
 

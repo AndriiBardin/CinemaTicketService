@@ -1,10 +1,9 @@
-package cinema.service.impl;
+package cinema.service;
 
 import cinema.dao.UserDao;
 import cinema.lib.Inject;
 import cinema.lib.Service;
 import cinema.model.User;
-import cinema.service.UserService;
 import cinema.util.HashUtil;
 import java.util.Optional;
 

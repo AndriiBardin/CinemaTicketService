@@ -11,7 +11,6 @@ import cinema.service.AuthenticationService;
 import cinema.service.CinemaHallService;
 import cinema.service.MovieService;
 import cinema.service.MovieSessionService;
-import cinema.service.OrderService;
 import cinema.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -43,7 +42,7 @@ public class Main {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movie2);
         movieSession.setCinemaHall(cinemaHall);
-        movieSession.setDate(LocalDateTime.of(2020,2,13, 20,0));
+        movieSession.setDate(LocalDateTime.of(2020,2,1, 20,0));
         MovieSessionService movieSessionService = (MovieSessionService)
                 injector.getInstance(MovieSessionService.class);
         movieSessionService.add(movieSession);
@@ -78,12 +77,5 @@ public class Main {
 
         shoppingCartService.clear(cartByUser);
         System.out.println(shoppingCartService.getByUser(user1));
-
-        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
-
-        orderService.completeOrder(shoppingCartService.getByUser(user2));
-        orderService.completeOrder(shoppingCartService.getByUser(user1));
-
-        System.out.println(orderService.getOrdersHistory(user2));
     }
 }
