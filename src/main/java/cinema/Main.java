@@ -5,10 +5,13 @@ import cinema.lib.Injector;
 import cinema.model.CinemaHall;
 import cinema.model.Movie;
 import cinema.model.MovieSession;
+import cinema.model.ShoppingCart;
+import cinema.model.User;
 import cinema.service.AuthenticationService;
 import cinema.service.CinemaHallService;
 import cinema.service.MovieService;
 import cinema.service.MovieSessionService;
+import cinema.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -53,7 +56,7 @@ public class Main {
         String email = "test@test.com";
         String pass = "testPass";
         authenticationService.register(email, pass);
-        authenticationService.login(email, pass);
+        User user1 = authenticationService.login(email, pass);
 
         System.out.println(authenticationService.login(email, pass));
 
@@ -61,7 +64,18 @@ public class Main {
         String pass1 = "testPass1";
 
         authenticationService.register(email1, pass1);
-        authenticationService.login(email1, pass1);
-        System.out.println(authenticationService.login(email1, pass1));
+        User user2 = authenticationService.login(email1, pass1);
+
+        ShoppingCartService shoppingCartService = (ShoppingCartService)
+                injector.getInstance(ShoppingCartService.class);
+
+        shoppingCartService.addSession(movieSession,user1);
+        shoppingCartService.addSession(movieSession, user2);
+
+        ShoppingCart cartByUser = shoppingCartService.getByUser(user1);
+        System.out.println(cartByUser);
+
+        shoppingCartService.clear(cartByUser);
+        System.out.println(shoppingCartService.getByUser(user1));
     }
 }
