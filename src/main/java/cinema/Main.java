@@ -2,7 +2,11 @@ package cinema;
 
 import cinema.exception.AuthenticationException;
 import cinema.lib.Injector;
-import cinema.model.*;
+import cinema.model.CinemaHall;
+import cinema.model.Movie;
+import cinema.model.MovieSession;
+import cinema.model.ShoppingCart;
+import cinema.model.User;
 import cinema.service.AuthenticationService;
 import cinema.service.CinemaHallService;
 import cinema.service.MovieService;
