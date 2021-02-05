@@ -5,6 +5,7 @@ import cinema.lib.Injector;
 import cinema.model.CinemaHall;
 import cinema.model.Movie;
 import cinema.model.MovieSession;
+import cinema.model.Order;
 import cinema.model.ShoppingCart;
 import cinema.model.User;
 import cinema.service.AuthenticationService;
@@ -15,6 +16,7 @@ import cinema.service.OrderService;
 import cinema.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
     private static Injector injector = Injector.getInstance("cinema");
@@ -85,7 +87,11 @@ public class Main {
         orderService.completeOrder(shoppingCartService.getByUser(user1));
         orderService.completeOrder(shoppingCartService.getByUser(user2));
 
-        System.out.println(orderService.getOrdersHistory(user1));
-        System.out.println(orderService.getOrdersHistory(user2));
+        System.out.println("============================================");
+
+        List<Order> history1 = orderService.getOrdersHistory(user1);
+        history1.forEach(System.out::println);
+        List<Order> history2 = orderService.getOrdersHistory(user2);
+        history2.forEach(System.out::println);
     }
 }

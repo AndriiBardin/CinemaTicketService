@@ -58,4 +58,13 @@ public class Order {
     public void setOrderTime(LocalDateTime orderTime) {
         this.orderTime = orderTime;
     }
+
+    @Override
+    public String toString() {
+        return "Order{"
+                + "id=" + id
+                + ", user=" + user
+                + ", tickets=" + tickets
+                + ", orderTime=" + orderTime + '}';
+    }
 }
