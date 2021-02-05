@@ -35,6 +35,7 @@ public class Main {
 
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setCapacity(10);
+        cinemaHall.setDescription("small private movie hall");
 
         CinemaHallService cinemaHallService = (CinemaHallService)
                 injector.getInstance(CinemaHallService.class);
@@ -81,8 +82,10 @@ public class Main {
 
         OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
 
+        orderService.completeOrder(shoppingCartService.getByUser(user1));
         orderService.completeOrder(shoppingCartService.getByUser(user2));
-        orderService.getOrdersHistory(user1);
-        orderService.getOrdersHistory(user2);
+
+        System.out.println(orderService.getOrdersHistory(user1));
+        System.out.println(orderService.getOrdersHistory(user2));
     }
 }
