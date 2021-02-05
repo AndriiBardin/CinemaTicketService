@@ -46,7 +46,7 @@ public class Main {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movie2);
         movieSession.setCinemaHall(cinemaHall);
-        movieSession.setDate(LocalDateTime.of(2020,2,13, 20,0));
+        movieSession.setDate(LocalDateTime.of(2020, 2, 13, 20, 0));
         MovieSessionService movieSessionService = (MovieSessionService)
                 injector.getInstance(MovieSessionService.class);
         movieSessionService.add(movieSession);
