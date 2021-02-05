@@ -84,7 +84,5 @@ public class Main {
         orderService.completeOrder(shoppingCartService.getByUser(user2));
         orderService.getOrdersHistory(user1);
         orderService.getOrdersHistory(user2);
-
-
     }
 }
