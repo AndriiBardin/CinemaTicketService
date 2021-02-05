@@ -5,15 +5,18 @@ import cinema.lib.Injector;
 import cinema.model.CinemaHall;
 import cinema.model.Movie;
 import cinema.model.MovieSession;
+import cinema.model.Order;
 import cinema.model.ShoppingCart;
 import cinema.model.User;
 import cinema.service.AuthenticationService;
 import cinema.service.CinemaHallService;
 import cinema.service.MovieService;
 import cinema.service.MovieSessionService;
+import cinema.service.OrderService;
 import cinema.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 public class Main {
     private static Injector injector = Injector.getInstance("cinema");
@@ -34,6 +37,7 @@ public class Main {
 
         CinemaHall cinemaHall = new CinemaHall();
         cinemaHall.setCapacity(10);
+        cinemaHall.setDescription("small private movie hall");
 
         CinemaHallService cinemaHallService = (CinemaHallService)
                 injector.getInstance(CinemaHallService.class);
@@ -42,7 +46,7 @@ public class Main {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movie2);
         movieSession.setCinemaHall(cinemaHall);
-        movieSession.setDate(LocalDateTime.of(2020,2,1, 20,0));
+        movieSession.setDate(LocalDateTime.of(2020, 2, 13, 20, 0));
         MovieSessionService movieSessionService = (MovieSessionService)
                 injector.getInstance(MovieSessionService.class);
         movieSessionService.add(movieSession);
@@ -77,5 +81,17 @@ public class Main {
 
         shoppingCartService.clear(cartByUser);
         System.out.println(shoppingCartService.getByUser(user1));
+
+        OrderService orderService = (OrderService) injector.getInstance(OrderService.class);
+
+        orderService.completeOrder(shoppingCartService.getByUser(user1));
+        orderService.completeOrder(shoppingCartService.getByUser(user2));
+
+        System.out.println("============================================");
+
+        List<Order> history1 = orderService.getOrdersHistory(user1);
+        history1.forEach(System.out::println);
+        List<Order> history2 = orderService.getOrdersHistory(user2);
+        history2.forEach(System.out::println);
     }
 }
