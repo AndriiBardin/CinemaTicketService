@@ -15,8 +15,18 @@ public class User {
     private Long id;
     @Column(unique = true, nullable = false, length = 20)
     private String email;
+    private String name;
     private String password;
     private byte[] salt;
+
+    public User() {
+    }
+
+    public User(String name, String password, String email) {
+        this.name = name;
+        this.password = password;
+        this.email = email;
+    }
 
     public Long getId() {
         return id;
@@ -24,6 +34,14 @@ public class User {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {

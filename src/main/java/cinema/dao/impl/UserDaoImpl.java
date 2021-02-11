@@ -2,22 +2,29 @@ package cinema.dao.impl;
 
 import cinema.dao.UserDao;
 import cinema.exception.DataBaseException;
-import cinema.lib.Dao;
 import cinema.model.User;
-import cinema.util.HibernateUtil;
+import java.util.List;
 import java.util.Optional;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
 
-@Dao
+@Repository
 public class UserDaoImpl implements UserDao {
+    private final SessionFactory sessionFactory;
+
+    public UserDaoImpl(SessionFactory sessionFactory) {
+        this.sessionFactory = sessionFactory;
+    }
+
     @Override
     public User add(User user) {
         Transaction transaction = null;
         Session session = null;
         try {
-            session = HibernateUtil.getSessionFactory().openSession();
+            session = sessionFactory.openSession();
             transaction = session.beginTransaction();
             session.save(user);
             transaction.commit();
@@ -36,13 +43,31 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public Optional<User> findByEmail(String email) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+        try (Session session = sessionFactory.openSession()) {
             Query<User> findByEmail = session
-                    .createQuery("from User where email =:email", User.class);
+                    .createQuery("from User where email = :email", User.class);
             findByEmail.setParameter("email", email);
             return findByEmail.uniqueResultOptional();
         } catch (RuntimeException e) {
             throw new DataBaseException("No user with such email " + email, e);
+        }
+    }
+
+    @Override
+    public List<User> listUsers() {
+        try (Session session = sessionFactory.openSession()) {
+            return session.createQuery("select u from User u", User.class).getResultList();
+        } catch (Exception e) {
+            throw new RuntimeException("Can't list all users", e);
+        }
+    }
+
+    @Override
+    public Optional<User> getById(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return Optional.ofNullable(session.get(User.class, id));
+        } catch (Exception e) {
+            throw new RuntimeException("Can't get user with id " + id, e);
         }
     }
 }
