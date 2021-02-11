@@ -1,6 +1,5 @@
 package cinema.config;
 
-import cinema.model.User;
 import java.util.Properties;
 import javax.sql.DataSource;
 import org.apache.commons.dbcp2.BasicDataSource;
