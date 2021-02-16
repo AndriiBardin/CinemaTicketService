@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/halls")
+@RequestMapping("/cinema-halls")
 public class CinemaHallController {
     private final CinemaHallMapper cinemaHallMapper;
     private final CinemaHallService cinemaHallService;
@@ -36,6 +36,5 @@ public class CinemaHallController {
         return cinemaHallService.getAll().stream()
                 .map(cinemaHallMapper::cinemaHallToResponseDto)
                 .collect(Collectors.toList());
-
     }
 }

@@ -53,11 +53,11 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
     }
 
     @Override
-    public Optional<CinemaHall> getId(Long id) {
+    public Optional<CinemaHall> get(Long id) {
         try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.get(CinemaHall.class, id));
         } catch (Exception e) {
-            throw new DataBaseException("Can't get movie by id " + id, e);
+            throw new DataBaseException("Movie by id " + id + " does not exist", e);
         }
     }
 }
