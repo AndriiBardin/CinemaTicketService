@@ -4,6 +4,7 @@ import cinema.dao.CinemaHallDao;
 import cinema.exception.DataBaseException;
 import cinema.model.CinemaHall;
 import java.util.List;
+import java.util.Optional;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -48,6 +49,15 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
             return getAllHalls.getResultList();
         } catch (Exception e) {
             throw new DataBaseException("Can't get all movies", e);
+        }
+    }
+
+    @Override
+    public Optional<CinemaHall> getId(Long id) {
+        try (Session session = sessionFactory.openSession()) {
+            return Optional.ofNullable(session.get(CinemaHall.class, id));
+        } catch (Exception e) {
+            throw new DataBaseException("Can't get movie by id " + id, e);
         }
     }
 }
