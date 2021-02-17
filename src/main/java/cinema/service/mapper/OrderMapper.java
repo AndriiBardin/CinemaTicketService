@@ -15,7 +15,7 @@ public class OrderMapper {
         orderResponseDto.setOrderDate(order.getOrderTime().toString());
         List<Long> ticketIds = order.getTickets().stream().map(Ticket::getId)
                 .collect(Collectors.toList());
-        orderResponseDto.setTicketsId(ticketIds);
+        orderResponseDto.setTicketsIds(ticketIds);
         orderResponseDto.setUserEmail(order.getUser().getEmail());
         return orderResponseDto;
     }

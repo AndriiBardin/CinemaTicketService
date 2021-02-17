@@ -16,11 +16,11 @@ public class OrderResponseDto {
         this.id = id;
     }
 
-    public List<Long> getTicketsId() {
+    public List<Long> getTicketsIds() {
         return ticketsIds;
     }
 
-    public void setTicketsId(List<Long> ticketsId) {
+    public void setTicketsIds(List<Long> ticketsId) {
         this.ticketsIds = ticketsId;
     }
 

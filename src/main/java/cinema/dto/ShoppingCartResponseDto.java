@@ -15,11 +15,11 @@ public class ShoppingCartResponseDto {
         this.id = id;
     }
 
-    public List<Long> getTicketsId() {
+    public List<Long> getTicketsIds() {
         return ticketsIds;
     }
 
-    public void setTicketsId(List<Long> ticketsIds) {
+    public void setTicketsIds(List<Long> ticketsIds) {
         this.ticketsIds = ticketsIds;
     }
 
