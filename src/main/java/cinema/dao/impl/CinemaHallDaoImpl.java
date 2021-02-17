@@ -57,7 +57,7 @@ public class CinemaHallDaoImpl implements CinemaHallDao {
         try (Session session = sessionFactory.openSession()) {
             return Optional.ofNullable(session.get(CinemaHall.class, id));
         } catch (Exception e) {
-            throw new DataBaseException("Movie by id " + id + " does not exist", e);
+            throw new DataBaseException("Cinema hall by id " + id + " does not exist", e);
         }
     }
 }
