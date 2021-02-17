@@ -19,8 +19,8 @@ public class UserController {
         this.userMapper = userMapper;
     }
 
-    @GetMapping
-    public UserResponseDto get(@RequestParam String email) {
+    @GetMapping("/by-email")
+    public UserResponseDto getByEmail(@RequestParam String email) {
         return userMapper.userToDto(userService.findByEmail(email).get());
     }
 }
