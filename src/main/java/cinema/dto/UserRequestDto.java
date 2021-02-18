@@ -1,8 +1,18 @@
 package cinema.dto;
 
+import cinema.security.EmailValidation;
+import cinema.security.PasswordValidation;
+import javax.validation.constraints.NotNull;
+
+@PasswordValidation
 public class UserRequestDto {
+    @NotNull
+    @EmailValidation
     private String email;
+    @NotNull
     private String password;
+    @NotNull
+    private String repeatPassword;
 
     public String getEmail() {
         return email;
@@ -18,5 +28,13 @@ public class UserRequestDto {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getRepeatPassword() {
+        return repeatPassword;
+    }
+
+    public void setRepeatPassword(String repeatPassword) {
+        this.repeatPassword = repeatPassword;
     }
 }
