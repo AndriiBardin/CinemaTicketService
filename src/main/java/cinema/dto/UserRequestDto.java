@@ -6,7 +6,6 @@ import javax.validation.constraints.NotNull;
 
 @PasswordValidation
 public class UserRequestDto {
-    @NotNull
     @EmailValidation
     private String email;
     @NotNull
