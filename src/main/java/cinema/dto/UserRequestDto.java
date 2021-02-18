@@ -4,7 +4,7 @@ import cinema.security.EmailValidation;
 import cinema.security.PasswordValidation;
 import javax.validation.constraints.NotNull;
 
-@PasswordValidation
+@PasswordValidation(field = "password", fieldRepeat = "repeatPassword")
 public class UserRequestDto {
     @EmailValidation
     private String email;

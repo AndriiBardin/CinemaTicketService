@@ -1,7 +1,6 @@
 package cinema.controller;
 
 import cinema.dto.OrderResponseDto;
-import cinema.model.User;
 import cinema.service.OrderService;
 import cinema.service.ShoppingCartService;
 import cinema.service.UserService;
@@ -40,7 +39,6 @@ public class OrderController {
     @GetMapping
     public List<OrderResponseDto> getOrderHistory(Authentication authentication) {
         String email = authentication.getName();
-        User user = userService.findByEmail(email).get();
         return orderService.getOrdersHistory(userService.findByEmail(email).get()).stream()
                 .map(orderMapper::orderToDto)
                 .collect(Collectors.toList());
