@@ -1,6 +1,5 @@
 package cinema.dto;
 
-import cinema.model.Role;
 import cinema.security.EmailValidation;
 import cinema.security.PasswordValidation;
 import javax.validation.constraints.NotNull;
