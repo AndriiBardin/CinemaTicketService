@@ -25,6 +25,7 @@ Admin has access to POST, GET, PUT and DELETE methods for almost all endpoints, 
 - Spring MVC 
 - Spring Security
 - Hibernate
+- MySQL
 - Jackson
 - Tomcat
 
