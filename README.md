@@ -34,7 +34,7 @@ Admin has access to POST, GET, PUT and DELETE methods for almost all endpoints, 
 - Install JDK (https://www.oracle.com/java/technologies/javase-downloads.html)
 - Download and install servlet container (Tomcat)
 - Download and install Database (MySQL) and set up the connection to DB in db.properties file
-- There are 2 user roles - "USER" and "ADMIN". To log in as admin use "admin" as and login "admin" as password
+- There are 2 user roles - "USER" and "ADMIN". To log in as admin use "admin" as login and "admin" as password
 - To test the application suggest using Postman or other API-testing applications
 
 ### written by Andrii Bardin
